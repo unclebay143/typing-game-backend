@@ -10,6 +10,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.route("/register").post(routesController.registeration);
+app.route("/login").post(routesController.login);
 
 const PORT = 1111;
 app.listen(PORT, () => console.log("server is on port " + PORT));
