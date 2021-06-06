@@ -5,7 +5,7 @@ const app = express();
 // Import Routes
 const authRouters = require("./routes/auth");
 const playersRouters = require("./routes/players");
-const gameRoutes = require("./routes/games");
+const gamesRoutes = require("./routes/games");
 
 // Route Middlewares
 app.use(express.urlencoded({ extended: true }));
@@ -14,11 +14,10 @@ app.use(express.json());
 // Routes
 app.use("/user", authRouters);
 app.use("/players", playersRouters);
-app.use("/games", gameRoutes);
+app.use("/games", gamesRoutes);
 
 //Port
 const port = process.env.PORT || 3000;
-
 app.listen(port, () => {
   console.log(`server is 🏃‍♂️ on port ${port}`);
 });
@@ -26,7 +25,7 @@ app.listen(port, () => {
 // Handle unknown route
 app.use((req, res, next) => {
   const error = new Error(
-    `Sorry can't find ${req.originalUrl} on the server😫😫`
+    `Sorry can't find ${req.originalUrl} on the server 😫😫`
   );
   throw error;
 });

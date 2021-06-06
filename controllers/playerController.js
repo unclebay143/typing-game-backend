@@ -5,9 +5,10 @@ const client = require("../config/dbconfig");
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
-    const allPlayers = await client.dbquery("SELECT * FROM developers.players");
+    const allPlayers = await client.query("SELECT * FROM developers.players");
     res.send({ allPlayers });
   } catch (error) {
+    console.log(error);
     res.status(400).send(error);
   }
 };
