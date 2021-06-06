@@ -4,6 +4,8 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { createGameRecord } = require("./players");
 
+// CONTROLLERS
+
 // QUERIES
 exports.registration = async (request, response) => {
   try {
