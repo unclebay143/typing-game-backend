@@ -1,22 +1,10 @@
 const client = require("../config/dbconfig");
 
-// Get all players
-exports.getPlayers = async (req, res) => {
-  try {
-    const allPlayers = await client.dbquery("SELECT * FROM developers.players");
-    res.send({ allPlayers });
-  } catch (error) {
-    res.status(400).send(error);
-  }
-};
-
 //  Create game record instance for new player
 exports.createGameRecord = async (req, res) => {
-  //   const { id } = req.body;
   const options = {
-    // schema is not passed here since it has been passed while creating client
+    // Schema is not passed here since it has been passed while creating client
     table: "players_game_record",
-    // hashattribute: "id",
     records: [
       {
         id: req,
@@ -32,13 +20,11 @@ exports.createGameRecord = async (req, res) => {
   // Async/await
   try {
     const response = await client.insert(options);
+
+    // Return response to the registration function
     return response;
-    // res.send(response);
-    console.log(res);
   } catch (err) {
     return err;
-    // res.send(err);
-    console.log(err);
   }
 };
 
@@ -48,7 +34,6 @@ exports.updateGame = async (req, res) => {
   const options = {
     // schema is not passed here since it has been passed while creating client
     table: "players_game_record",
-    // hashattribute: "id",
     records: [
       {
         id: id,

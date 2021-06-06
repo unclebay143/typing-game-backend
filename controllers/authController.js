@@ -2,11 +2,10 @@ const client = require("../config/dbconfig");
 const { registerValidation, loginValidation } = require("../validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { createGameRecord } = require("./players");
+const { createGameRecord } = require("./gameController");
 
 // CONTROLLERS
 
-// QUERIES
 exports.registration = async (request, response) => {
   try {
     // Validate for with Joi
@@ -32,10 +31,7 @@ exports.registration = async (request, response) => {
       return response.status(400).json({ message: "Player already exist" });
     } else {
       // Register new player if no error
-      const res = await registerNewPlayer(userName, email, hashedPassword);
-      // response.send(res);
-      // Create record for player in the games_table
-      // createGameRecord(res.data.inserted_hashes[0]);
+      const res = await createNewPlayer(userName, email, hashedPassword);
       // Return the response status from the db -Restful best practice
       response.status(res.statusCode).json({ message: "success" });
     }
@@ -77,7 +73,7 @@ const isEmailExist = async (email) => {
 };
 
 // REGISTER A NEW USER
-const registerNewPlayer = async (userName, email, password) => {
+const createNewPlayer = async (userName, email, password) => {
   try {
     // Query the db to add new player
     const response = await client.insert({
@@ -93,13 +89,11 @@ const registerNewPlayer = async (userName, email, password) => {
     });
 
     if (response.statusCode === 200) {
+      // Create game record for new player in the players_game_record
       const res = await createGameRecord(response.data.inserted_hashes[0]);
+      // Return response to the playerRegisteration function
       return res;
     }
-
-    // updateGame();
-    // Return the response
-    // return response;
   } catch (error) {
     return error;
   }
@@ -107,7 +101,7 @@ const registerNewPlayer = async (userName, email, password) => {
 
 // LOGIN
 exports.login = async (request, response) => {
-  // Validate for with Joi
+  // Validate form with Joi
   const { error } = loginValidation(request.body);
   const { userName, password } = request.body;
 
@@ -135,6 +129,7 @@ exports.login = async (request, response) => {
 
     // Create and assign token
     const token = jwt.sign({ _id: user.id }, process.env.JWT_ACCESS_TOKEN);
+    // Send token to the frontend
     response.header("auth-token", token).status(200).send({
       message: "success",
       token: token,
