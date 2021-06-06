@@ -1,7 +1,9 @@
+// Database Configuration
+
 // Dotenv package to enable environment variables in .env
 require('dotenv').config();
 
-const haperive = require('harperive');
+const harperive = require('harperive');
 
 
 const DB_CONFIG = {
@@ -15,6 +17,5 @@ const Client = harperive.Client;
 
 // New instance of harperive
 const db = new Client(DB_CONFIG);
-
 
 module.exports = db;

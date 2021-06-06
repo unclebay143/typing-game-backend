@@ -1,12 +1,15 @@
-const express = require('express');
+// Express
+const express = require("express");
 const app = express();
 
 // Import Routes
-const authRoute = require('./routes/auth');
+const routesController = require("./api/index");
 
 // Route Middlewares
-app.use('/api/user', authRoute);
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+app.route("/register").post(routesController.registeration);
 
-const PORT = 1111
-app.listen(PORT, ()=>console.log('server is on port' + PORT));
+const PORT = 1111;
+app.listen(PORT, () => console.log("server is on port " + PORT));
