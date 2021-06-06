@@ -2,6 +2,6 @@
 const router = require("express").Router();
 const { getPlayers } = require("../controllers/playerController");
 
-router.get("/all", getPlayers);
+router.get("/alls", getPlayers);
 
 module.exports = router;
