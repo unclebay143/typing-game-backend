@@ -3,14 +3,22 @@ const express = require("express");
 const app = express();
 
 // Import Routes
-const routesController = require("./api/index");
+const authController = require("./api/index");
+const playerController = require("./api/players");
 
 // Route Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.route("/register").post(routesController.registeration);
-app.route("/login").post(routesController.login);
+// Routes
+app.route("/register").post(authController.registration);
+app.route("/login").post(authController.login);
+app.route("/players").get(playerController.getPlayers);
+app.route("/game/update").put(playerController.updateGame);
 
-const PORT = 1111;
-app.listen(PORT, () => console.log("server is on port " + PORT));
+//Port
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+  console.log(`server is on port ${port}`);
+});

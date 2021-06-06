@@ -7,7 +7,7 @@ module.exports = function auth(req, res, next) {
 
   // If there is a token, try to verify it
   try {
-    const verified = jwt.verify(token, process.env.JWT_SECRET);
+    const verified = jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
 
     // Verify will return the id
     req.user = verified;
