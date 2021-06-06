@@ -9,6 +9,6 @@ exports.getPlayers = async (req, res) => {
     res.json(allPlayers);
   } catch (error) {
     console.log("error 101", error);
-    res.status(400).json("error from the db");
+    res.status(400).json(`error from the db ${error}`);
   }
 };
