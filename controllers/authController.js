@@ -126,11 +126,16 @@ exports.login = async (request, response) => {
 
     // If no user is found
     if (user.data.length === 0)
-      return response.status(400).json(message: "Username or password is incorrect 🤦‍♂️");
+      return response
+        .status(400)
+        .json({ message: "Username or password is incorrect 🤦‍♂️" });
     // Validate Password
     const validPass = await bcrypt.compare(password, user.data[0].password);
+    // If password is invalid
     if (!validPass)
-      return response.status(400).json(message:"Invalid User credentials 🙇‍♀️");
+      return response
+        .status(400)
+        .json({ message: "Invalid User credentials 🙇‍♀️" });
 
     // Create and assign token
     const token = jwt.sign({ _id: user.id }, process.env.JWT_ACCESS_TOKEN);
