@@ -109,7 +109,10 @@ exports.login = async (request, response) => {
 
   if (error)
     // If there is an error return validation error
-    return response.status(400).send(error.details[0].message);
+    // return response.status(400).send(error.details[0].message);
+    return response.status(400).json({
+      message: error.details[0].message,
+    });
 
   // DUPLICATED USERNAME VALIDATION FUNCTION return true if username exist on the db
   try {

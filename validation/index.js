@@ -19,8 +19,13 @@ const registerValidation = (data) => {
 // Login validation
 const loginValidation = (data) => {
   const loginSchema = Joi.object({
-    userName: Joi.string().min(5).max(15).required(),
-    password: Joi.string().min(6).required(),
+    userName: Joi.string()
+      .min(5)
+      .message("username too short 😫")
+      .max(15)
+      .message("username too long 😫")
+      .required(),
+    password: Joi.string().min(6).message("password too short 😫").required(),
   });
 
   return loginSchema.validate(data);
