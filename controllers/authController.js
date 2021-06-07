@@ -20,8 +20,7 @@ exports.registration = async (request, response) => {
 
     if (error)
       // If there is an error return validation error as an object
-      return response.status(400).send({
-        status: response.statusCode,
+      return response.status(400).json({
         message: error.details[0].message,
       });
 
