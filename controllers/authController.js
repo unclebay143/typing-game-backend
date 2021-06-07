@@ -138,6 +138,6 @@ exports.login = async (request, response) => {
       username: user.data[0].userName,
     });
   } catch (error) {
-    response.send(error);
+    response.json(error);
   }
 };
