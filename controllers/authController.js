@@ -19,8 +19,11 @@ exports.registration = async (request, response) => {
     const hashedPassword = await bcrypt.hash(password, salt);
 
     if (error)
-      // If there is an error return validation error
-      return response.status(400).send(error.details[0].message);
+      // If there is an error return validation error as an object
+      return response.status(400).send({
+        status: response.statusCode,
+        message: error.details[0].message,
+      });
 
     // Check if the user exist only continue if both returns false
     const isUserExist =
@@ -36,7 +39,7 @@ exports.registration = async (request, response) => {
       response.status(res.statusCode).json({ message: "success" });
     }
   } catch (error) {
-    response.send(error);
+    response.json(error);
   }
 };
 

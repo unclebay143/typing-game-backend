@@ -10,7 +10,7 @@
     "url": "https://www.unclebigbay.dev"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

@@ -23,6 +23,7 @@ app.use(cors());
 //     }
 //   },
 // };
+
 // Routes
 app.use("/user", authRouters);
 app.use("/players", playersRouters);
