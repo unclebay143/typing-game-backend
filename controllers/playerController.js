@@ -10,6 +10,6 @@ exports.getPlayers = async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .json(`error from the db ${error} ${process.env.INSTANCE_SCHEMA}`);
+      .json(`error from the db ${error} - .env ${process.env.INSTANCE_SCHEMA}`);
   }
 };
