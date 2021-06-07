@@ -1,5 +1,5 @@
-// Express
 const express = require("express");
+const cors = require("cors");
 const app = express();
 
 // Import Routes
@@ -7,9 +7,10 @@ const authRouters = require("./routes/auth");
 const playersRouters = require("./routes/players");
 const gamesRoutes = require("./routes/games");
 
-// Route Middlewares
+// Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.user(cors());
 
 // Routes
 app.use("/user", authRouters);
