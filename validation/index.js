@@ -3,9 +3,23 @@ const Joi = require("joi");
 // Registration validation
 const registerValidation = (data) => {
   const registrationSchema = Joi.object({
-    userName: Joi.string().min(5).max(15).required(),
-    password: Joi.string().min(6).required(),
-    email: Joi.string().min(6).required(),
+    userName: Joi.string()
+      .min(5)
+      .message("username too short 😫")
+      .max(15)
+      .message("username too long 😫")
+      .required()
+      .message("username is required 🙏"),
+    password: Joi.string()
+      .min(6)
+      .message("password too short 😫")
+      .required()
+      .message("password is required 🙏"),
+    email: Joi.string()
+      .min(6)
+      .message("username too short 😫")
+      .required()
+      .message("email is required 🙏"),
   });
 
   return registrationSchema.validate(data);
