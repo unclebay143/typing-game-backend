@@ -10,8 +10,19 @@ const gamesRoutes = require("./routes/games");
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.user(cors());
+app.use(cors());
 
+// Cors option
+// const whitelist = ["http://example1.com", "http://example2.com"];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not allowed by CORS"));
+//     }
+//   },
+// };
 // Routes
 app.use("/user", authRouters);
 app.use("/players", playersRouters);
