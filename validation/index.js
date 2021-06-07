@@ -8,18 +8,9 @@ const registerValidation = (data) => {
       .message("username too short 😫")
       .max(15)
       .message("username too long 😫")
-      .required()
-      .message("username is required 🙏"),
-    password: Joi.string()
-      .min(6)
-      .message("password too short 😫")
-      .required()
-      .message("password is required 🙏"),
-    email: Joi.string()
-      .min(6)
-      .message("username too short 😫")
-      .required()
-      .message("email is required 🙏"),
+      .required(),
+    password: Joi.string().min(6).message("password too short 😫").required(),
+    email: Joi.string().min(6).message("username too short 😫").required(),
   });
 
   return registrationSchema.validate(data);
