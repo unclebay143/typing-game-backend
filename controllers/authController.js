@@ -125,7 +125,6 @@ exports.login = async (request, response) => {
       searchValue: userName,
       attributes: ["userName", "password", "id"],
     });
-    dd;
     // If no user is found
     if (user.data.length === 0)
       return response
