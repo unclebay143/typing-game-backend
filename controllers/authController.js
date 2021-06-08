@@ -3,6 +3,7 @@ const { registerValidation, loginValidation } = require("../validation");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { createGameRecord } = require("./gameController");
+const { sendWelcomeMail } = require("./../mailing/welcome");
 
 // CONTROLLERS
 
@@ -13,7 +14,6 @@ exports.registration = async (request, response) => {
 
     // Destructure request body
     const { userName, email, password } = request.body;
-
     // Hash passwords
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -34,6 +34,8 @@ exports.registration = async (request, response) => {
     } else {
       // Register new player if no error
       const res = await createNewPlayer(userName, email, hashedPassword);
+      // Send welcome mail
+      sendWelcomeMail(userName, email, password);
       // Return the response status from the db -Restful best practice
       response.status(res.statusCode).json({ message: "success" });
     }
