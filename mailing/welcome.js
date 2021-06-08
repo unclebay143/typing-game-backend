@@ -26,7 +26,7 @@ exports.sendWelcomeMail = (receiver, receiverAddress) => {
   var mailOptions = {
     from: "Developer Typing Game Creator -unclebigbay 👲",
     to: receiverAddress,
-    subject: "Welcome on Board 👋",
+    subject: "Welcome on Board V1 👋",
     html: `Hi ${receiver}, we are glad you joined <strong>10+ developers</strong> using DevType to improve their typing speed. 
     <br />
     <br />
