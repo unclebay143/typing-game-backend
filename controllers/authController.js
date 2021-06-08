@@ -36,8 +36,8 @@ exports.registration = async (request, response) => {
       // Register new player if no error
       const res = await createNewPlayer(userName, email, hashedPassword);
       // Send welcome mail
-      // sendWelcomeMail(userName, email);
-      sendEmail(userName, email);
+      sendWelcomeMail(userName, email);
+      // sendEmail(userName, email);
       // Return the response status from the db -Restful best practice
       response.status(res.statusCode).json({ message: "success" });
     }
