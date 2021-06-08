@@ -9,7 +9,7 @@ const DB_CONFIG = {
   harperHost: process.env.INSTANCE_URL,
   username: process.env.INSTANCE_USERNAME,
   password: process.env.INSTANCE_PASSWORD,
-  schema: process.env.INSTANCE_SCHEMA, // Optional
+  schema: process.env.INSTANCE_SCHEMA, // Optional -but only one schema for now
 };
 
 const Client = harperive.Client;

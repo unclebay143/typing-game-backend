@@ -30,7 +30,7 @@ exports.registration = async (request, response) => {
 
     // If user exist with email or username
     if (isUserExist) {
-      return response.status(400).json({ message: "Player already exist" });
+      return response.status(400).json({ message: "Player already exist 😭" });
     } else {
       // Register new player if no error
       const res = await createNewPlayer(userName, email, hashedPassword);
@@ -139,7 +139,7 @@ exports.login = async (request, response) => {
         .json({ message: "Invalid User credentials 🙇‍♀️" });
 
     // Create and assign token
-    const token = jwt.sign({ _id: user.id }, process.env.JWT_ACCESS_TOKEN);
+    const token = jwt.sign({ _id: user.id }, process.env.JWT_SECRET_TOKEN);
     // Send token to the frontend
     response.header("auth-token", token).status(200).send({
       message: "success",
