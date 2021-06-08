@@ -1,17 +1,18 @@
 var nodemailer = require("nodemailer");
 
 // Function to encrypt password - output pass****
-const generatePasswordStar = (password) => {
-  let passLength = password.length;
-  // Only show 4 character of the player password and convert the remainder to *
-  const generateStar = new Array(passLength - 4).fill("*").join("");
-  const encryptedPassword = password.slice(0, 4) + generateStar;
-  return encryptedPassword;
-};
+// const generatePasswordStar = (password) => {
+//   let passLength = password.length;
+//   // Only show 4 character of the player password and convert the remainder to *
+//   const generateStar = new Array(passLength - 4).fill("*").join("");
+//   const encryptedPassword = password.slice(0, 4) + generateStar;
+//   return encryptedPassword;
+// };
 
 // Function to send welcome mail
-exports.sendWelcomeMail = (receiver, receiverAddress, receiverPassword) => {
-  const encryptedReceiverPassword = generatePasswordStar(receiverPassword);
+exports.sendWelcomeMail = (receiver, receiverAddress) => {
+  // const encryptedReceiverPassword = generatePasswordStar(receiverPassword);
+
   // Send mail authentication -gmail
   var transporter = nodemailer.createTransport({
     service: "gmail",
@@ -26,15 +27,9 @@ exports.sendWelcomeMail = (receiver, receiverAddress, receiverPassword) => {
     from: "Developer Typing Game Creator -unclebigbay 👲",
     to: receiverAddress,
     subject: "Welcome on Board 👋",
-    html: `We are glad you joined <strong>10+ developers</strong> using DevType to improve their typing speed. 
-    I am going to leave your login credentials here for referencing 
+    html: `Hi ${receiver}, we are glad you joined <strong>10+ developers</strong> using DevType to improve their typing speed. 
     <br />
-    <ul>
-        <li>Username: ${receiver}</li>
-        <li>Email: ${receiverAddress}</li>
-        <li>Password: ${encryptedReceiverPassword}</li>
-    </ul>
-
+    <br />
     Wishing you a warm ride on our platform 🚀.
     <br />
     <br />
