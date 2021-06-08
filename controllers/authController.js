@@ -30,7 +30,7 @@ exports.registration = async (request, response) => {
 
     // If user exist with email or username
     if (isUserExist) {
-      return response.status(400).json({ message: "Player already exist" });
+      return response.status(400).json({ message: "Player already exist 😭" });
     } else {
       // Register new player if no error
       const res = await createNewPlayer(userName, email, hashedPassword);

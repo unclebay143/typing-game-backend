@@ -3,9 +3,9 @@ var nodemailer = require("nodemailer");
 // Function to encrypt password - output pass****
 const generatePasswordStar = (password) => {
   let passLength = password.length;
+  // Only show 4 character of the player password and convert the remainder to *
   const generateStar = new Array(passLength - 4).fill("*").join("");
   const encryptedPassword = password.slice(0, 4) + generateStar;
-  console.log(encryptedPassword);
   return encryptedPassword;
 };
 

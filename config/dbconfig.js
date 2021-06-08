@@ -18,5 +18,3 @@ const Client = harperive.Client;
 const client = new Client(DB_CONFIG);
 
 module.exports = client;
-
-console.log(client);
