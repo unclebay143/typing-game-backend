@@ -2,11 +2,32 @@ const client = require("../config/dbconfig");
 
 // CONTROLLERS
 
+// Function to get player profile through jwt verify token
+exports.profile = async (req, res) => {
+  try {
+    const playerProfile = await client.searchByHash({
+      table: "players",
+      hashValues: [req.user._id],
+      attributes: ["*"],
+    });
+    res.send(playerProfile);
+  } catch (error) {
+    res.status(401).send({ errorMessageToken: error });
+  }
+};
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
     const allPlayers = await client.query("SELECT * FROM developers.players");
-    res.json(allPlayers);
+    // New array for players username
+    const playersUserName = [];
+    // Get all players username and store to playersUserName array
+    allPlayers.data.forEach((player) => {
+      playersUserName.push(player.userName);
+    });
+
+    // Return only players usernames
+    res.json(playersUserName);
   } catch (error) {
     res
       .status(400)

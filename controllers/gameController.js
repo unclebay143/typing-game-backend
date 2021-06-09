@@ -28,6 +28,20 @@ exports.createGameRecord = async (req, res) => {
   }
 };
 
+// Single player game record
+exports.myGameRecord = async (req, res) => {
+  try {
+    const playerProfile = await client.searchByHash({
+      table: "players_game_record",
+      hashValues: [req.user._id],
+      attributes: ["*"],
+    });
+    res.send(playerProfile);
+  } catch (error) {
+    res.status(401).send({ errorMessageToken: error });
+  }
+};
+
 // Update game record
 exports.updateGame = async (req, res) => {
   const { id, wpm, accuracy, rank, userName } = req.body;

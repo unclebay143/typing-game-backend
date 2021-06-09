@@ -139,9 +139,11 @@ exports.login = async (request, response) => {
       return response
         .status(400)
         .json({ message: "Invalid User credentials 🙇‍♀️" });
-
-    // Create and assign token
-    const token = jwt.sign({ _id: user.id }, process.env.JWT_SECRET_TOKEN);
+    // Create and assign token -attach user id to token
+    const token = jwt.sign(
+      { _id: user.data[0].id },
+      process.env.JWT_SECRET_TOKEN
+    );
     // Send token to the frontend
     response.header("auth-token", token).status(200).send({
       message: "success",
