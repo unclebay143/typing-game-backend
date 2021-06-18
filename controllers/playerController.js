@@ -8,7 +8,7 @@ exports.profile = async (req, res) => {
     const playerProfile = await client.searchByHash({
       table: "players",
       hashValues: [req.user._id],
-      attributes: ["*"],
+      attributes: ["email", "id", "twitterHandle", "userName"],
     });
     res.send(playerProfile);
   } catch (error) {
@@ -18,12 +18,14 @@ exports.profile = async (req, res) => {
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
-    const allPlayers = await client.query("SELECT * FROM developers.players");
+    const allPlayers = await client.query(
+      "SELECT * FROM developers.players_game_record"
+    );
     // New array for players username
     const playersUserName = [];
     // Get all players username and store to playersUserName array
     allPlayers.data.forEach((player) => {
-      playersUserName.push(player.userName);
+      playersUserName.push(player);
     });
 
     // Return only players usernames

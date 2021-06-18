@@ -95,8 +95,12 @@ const createNewPlayer = async (userName, email, password) => {
     });
 
     if (response.statusCode === 200) {
+      const userCredentials = {
+        id: response.data.inserted_hashes[0],
+        userName: userName,
+      };
       // Create game record for new player in the players_game_record
-      const res = await createGameRecord(response.data.inserted_hashes[0]);
+      const res = await createGameRecord(userCredentials);
       // Return response to the playerRegisteration function
       return res;
     }

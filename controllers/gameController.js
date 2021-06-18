@@ -7,7 +7,8 @@ exports.createGameRecord = async (req, res) => {
     table: "players_game_record",
     records: [
       {
-        id: req,
+        id: req.id,
+        userName: req.userName,
         wpm: 0,
         accuracy: 0,
         rank: 0,
