@@ -13,7 +13,6 @@ exports.createGameRecord = async (req, res) => {
         accuracy: 0,
         rank: 0,
         time: Date.now(),
-        // numberOfTimesWon: +1,
       },
     ],
   };
@@ -54,6 +53,7 @@ exports.updateGame = async (req, res) => {
         id: id,
         wpm: wpm,
         accuracy: accuracy,
+        time: Date.now(),
       },
     ],
   };
