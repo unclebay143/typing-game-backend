@@ -4,6 +4,7 @@ const {
   getPlayers,
   profile,
   rankPlayers,
+  getGameRecord,
 } = require("../controllers/playerController");
 const verifyToken = require("./verifyToken");
 
@@ -11,5 +12,6 @@ const verifyToken = require("./verifyToken");
 router.get("/profile", verifyToken, profile);
 router.get("/all", getPlayers);
 router.put("/rank", rankPlayers);
+router.get("/game-record", verifyToken, getGameRecord);
 
 module.exports = router;

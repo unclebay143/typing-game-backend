@@ -58,3 +58,18 @@ exports.rankPlayers = async (req, res) => {
     res.send(err);
   }
 };
+
+// Get player game record
+exports.getGameRecord = async (req, res) => {
+  try {
+    const playerGameRecord = await client.searchByHash({
+      table: "players_game_record",
+      hashValues: [req.user._id],
+      attributes: ["*"],
+    });
+    res.send(playerGameRecord);
+  } catch (error) {
+    console.log(error);
+    res.status(401).send({ errorMessage: error });
+  }
+};
