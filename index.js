@@ -31,6 +31,7 @@ app.use("/games", gamesRoutes);
 
 //Port
 const port = process.env.PORT || 3000;
+
 app.listen(port, () => {
   console.log(`server is 🏃‍♂️ on port ${port}`);
 });

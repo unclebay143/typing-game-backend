@@ -3,8 +3,8 @@ const jwt = require("jsonwebtoken");
 // Middleware function to validate the generated token
 module.exports = function auth(req, res, next) {
   const token = req.header("auth-token");
-  if (!token)
-    return res.status(401).send("Access Denied, did you lost your token? 🤷‍♀️ ");
+  if (!token) return res.status(401).send(req.header);
+  // res.status(401).send("Access Denied, did you lost your token? 🤷‍♀️ ");
 
   // If there is a token
   try {
