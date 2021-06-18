@@ -36,3 +36,25 @@ exports.getPlayers = async (req, res) => {
       .json(`error from the db ${error} - .env ${process.env.INSTANCE_SCHEMA}`);
   }
 };
+
+// Rank players
+exports.rankPlayers = async (req, res) => {
+  const { id, rank } = req.body;
+
+  const options = {
+    table: "players_game_record",
+    records: [
+      {
+        id: id,
+        rank: rank,
+      },
+    ],
+  };
+
+  try {
+    const response = await client.update(options);
+    res.send(response);
+  } catch (err) {
+    res.send(err);
+  }
+};

@@ -66,25 +66,3 @@ exports.updateGame = async (req, res) => {
     res.send(err);
   }
 };
-
-// Rank players
-exports.rankPlayers = async (req, res) => {
-  const { id, rank } = req.body;
-
-  const options = {
-    table: "players_game_record",
-    records: [
-      {
-        id: id,
-        rank: rank,
-      },
-    ],
-  };
-
-  try {
-    const response = await client.update(options);
-    res.send(response);
-  } catch (err) {
-    res.send(err);
-  }
-};
