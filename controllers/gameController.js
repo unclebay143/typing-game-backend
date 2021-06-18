@@ -45,19 +45,15 @@ exports.myGameRecord = async (req, res) => {
 
 // Update game record
 exports.updateGame = async (req, res) => {
-  const { id, wpm, accuracy, rank, userName } = req.body;
+  const { id, wpm, accuracy } = req.body;
   const options = {
     // schema is not passed here since it has been passed while creating client
     table: "players_game_record",
     records: [
       {
         id: id,
-        userName: userName,
         wpm: wpm,
         accuracy: accuracy,
-        rank: rank,
-        time: Date.now(),
-        // numberOfTimesWon: +1,
       },
     ],
   };
@@ -66,9 +62,29 @@ exports.updateGame = async (req, res) => {
   try {
     const response = await client.update(options);
     res.send(response);
-    console.log(res);
   } catch (err) {
     res.send(err);
-    console.log(err);
+  }
+};
+
+// Rank players
+exports.rankPlayers = async (req, res) => {
+  const { id, rank } = req.body;
+
+  const options = {
+    table: "players_game_record",
+    records: [
+      {
+        id: id,
+        rank: rank,
+      },
+    ],
+  };
+
+  try {
+    const response = await client.update(options);
+    res.send(response);
+  } catch (err) {
+    res.send(err);
   }
 };
