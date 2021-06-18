@@ -145,7 +145,7 @@ exports.login = async (request, response) => {
       process.env.JWT_SECRET_TOKEN
     );
     // Send token to the frontend
-    response.header("auth-token", token).status(200).send({
+    response.header("authorization", token).status(200).send({
       message: "success",
       token: token,
       username: user.data[0].userName,
