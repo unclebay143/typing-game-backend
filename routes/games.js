@@ -5,6 +5,6 @@ const verifyToken = require("./verifyToken");
 
 // Routes
 router.get("/record/", verifyToken, myGameRecord);
-router.put("/update/", updateGame);
+router.put("/update/", verifyToken, updateGame);
 
 module.exports = router;

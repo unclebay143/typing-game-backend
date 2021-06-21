@@ -10,7 +10,6 @@ module.exports = function auth(req, res, next) {
   try {
     // Try to verify it
     const verified = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
-    console.log(req.user);
     // Verify will return the id
     req.user = verified;
     // Continue with the original function that middleware was applied
