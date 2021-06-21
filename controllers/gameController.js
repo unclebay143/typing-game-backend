@@ -51,8 +51,8 @@ exports.updateGame = async (req, res) => {
     records: [
       {
         id: req.user._id,
-        wpm: wpm,
-        accuracy: accuracy,
+        wpm: Math.round(wpm),
+        accuracy: Math.round(accuracy),
         time: Date.now(),
       },
     ],
