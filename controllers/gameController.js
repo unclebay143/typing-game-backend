@@ -44,13 +44,13 @@ exports.myGameRecord = async (req, res) => {
 
 // Update game record
 exports.updateGame = async (req, res) => {
-  const { id, wpm, accuracy } = req.body;
+  const { wpm, accuracy } = req.body;
   const options = {
     // schema is not passed here since it has been passed while creating client
     table: "players_game_record",
     records: [
       {
-        id: id,
+        id: req.user._id,
         wpm: wpm,
         accuracy: accuracy,
         time: Date.now(),
