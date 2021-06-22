@@ -17,7 +17,7 @@ const createTransporter = async () => {
   const accessToken = await new Promise((resolve, reject) => {
     oauth2Client.getAccessToken((err, token) => {
       if (err) {
-        reject("Failed to create access token :(");
+        reject("Failed to create access token :(" + error);
       }
       resolve(token);
     });
@@ -43,7 +43,7 @@ exports.sendEmail = async (receiver, receiverAddress) => {
   var mailOptions = {
     from: "Developer Typing Game Creator -unclebigbay 👲",
     to: receiverAddress,
-    subject: "Welcome on Board V2 👋",
+    subject: "Welcome on Board AppMode-Testing-V2 👋",
     html: `Hi ${receiver}, we are glad you joined <strong>10+ developers</strong> using DevType to improve their typing speed. 
         <br />
         <br />
@@ -52,6 +52,7 @@ exports.sendEmail = async (receiver, receiverAddress) => {
         <br />
         Thanks,
         <br />
+        <i>This is a development email to testers -kindly report bugs to developer</i>
         <br />
         Ayodele Samuel Adebayo (unclebigbay) <br />
         - Founder DevType
