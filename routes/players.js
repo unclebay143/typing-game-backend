@@ -10,6 +10,7 @@ const verifyToken = require("./verifyToken");
 
 // Routes
 router.get("/profile", verifyToken, profile);
+router.put("/profile/update", verifyToken, profile);
 router.get("/all", getPlayers);
 router.put("/rank", rankPlayers);
 router.get("/game-record", verifyToken, getGameRecord);

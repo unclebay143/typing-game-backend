@@ -15,6 +15,29 @@ exports.profile = async (req, res) => {
     res.status(401).send({ errorMessageToken: error });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  const { id, twitterHandle } = req.body;
+
+  const options = {
+    table: "players",
+    records: [
+      {
+        id: id,
+        twitterHandle: twitterHandle,
+      },
+    ],
+  };
+
+  try {
+    const response = await client.update(options);
+    res.send(response);
+  } catch (err) {
+    res.send(err);
+  }
+  try {
+  } catch {}
+};
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
