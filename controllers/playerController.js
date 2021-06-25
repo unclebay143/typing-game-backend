@@ -16,6 +16,7 @@ exports.profile = async (req, res) => {
   }
 };
 
+// update player profile (twitter only for now)
 exports.updateProfile = async (req, res) => {
   const { id, twitterHandle } = req.body;
 
@@ -35,9 +36,8 @@ exports.updateProfile = async (req, res) => {
   } catch (err) {
     res.send(err);
   }
-  try {
-  } catch {}
 };
+
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
