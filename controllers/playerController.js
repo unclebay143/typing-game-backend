@@ -18,13 +18,13 @@ exports.profile = async (req, res) => {
 
 // update player profile (twitter only for now)
 exports.updateProfile = async (req, res) => {
-  const { id, twitterHandle } = req.body;
+  const { twitterHandle } = req.body;
 
   const options = {
     table: "players",
     records: [
       {
-        id: id,
+        id: req.user._id,
         twitterHandle: twitterHandle,
       },
     ],
@@ -32,6 +32,7 @@ exports.updateProfile = async (req, res) => {
 
   try {
     const response = await client.update(options);
+    console.log(response);
     res.send(response);
   } catch (err) {
     res.send(err);
