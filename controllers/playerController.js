@@ -73,7 +73,7 @@ exports.getPlayers = async (req, res) => {
     twitterIncludedProfile.push(sortPlayersGameRecord);
 
     // Return players profile(twitter handle and game record)
-    res.json(twitterIncludedProfile);
+    res.status(200).json(twitterIncludedProfile);
   } catch (error) {
     res
       .status(400)
