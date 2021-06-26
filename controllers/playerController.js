@@ -42,18 +42,32 @@ exports.updateProfile = async (req, res) => {
 // Get all players
 exports.getPlayers = async (req, res) => {
   try {
-    const allPlayers = await client.query(
+    // Contains all players Game record (without twitter handle for home page)
+    const playersGameRecord = await client.query(
       "SELECT * FROM developers.players_game_record"
     );
-    // New array for players username
-    const playersUserName = [];
-    // Get all players username and store to playersUserName array
-    allPlayers.data.forEach((player) => {
-      playersUserName.push(player);
-    });
 
-    // Return only players usernames
-    res.json(playersUserName);
+    // Contains twitter handles without game records
+    const playersProfile = await client.query(
+      "SELECT * FROM developers.players"
+    );
+
+    // Array to hold players profile which has twitter included
+    const twitterIncludedProfile = [];
+
+    for (let i = 0; i < playersGameRecord.data.length; i++) {
+      // Look for twitter handle of players through id
+      if (playersProfile.data[i].id === playersGameRecord.data[i].id) {
+        // Set the the found handle as new property (twitter handle) to each players profile
+        playersGameRecord.data[i]["twitterHandle"] =
+          playersProfile.data[i].twitterHandle;
+      }
+    }
+    // Store new record with twitter handle
+    twitterIncludedProfile.push(playersGameRecord);
+
+    // Return players profile(twitter handle and game record)
+    res.json(twitterIncludedProfile);
   } catch (error) {
     res
       .status(400)
