@@ -32,7 +32,6 @@ exports.updateProfile = async (req, res) => {
 
   try {
     const response = await client.update(options);
-    console.log(response);
     res.send(response);
   } catch (err) {
     res.send(err);
@@ -52,19 +51,26 @@ exports.getPlayers = async (req, res) => {
       "SELECT * FROM developers.players"
     );
 
+    // Sort the players profile with IDs
+    const sortPlayersGameRecord = playersGameRecord.data.sort(
+      (a, b) => a.id - b.id
+    );
+    // Sort the players profile with IDs to match with players record arrangement
+    const sortplayersProfile = playersProfile.data.sort((a, b) => a.id - b.id);
+
     // Array to hold players profile which has twitter included
     const twitterIncludedProfile = [];
 
-    for (let i = 0; i < playersGameRecord.data.length; i++) {
+    for (let i = 0; i < sortPlayersGameRecord.length; i++) {
       // Look for twitter handle of players through id
-      if (playersProfile.data[i].id === playersGameRecord.data[i].id) {
+      if (sortplayersProfile[i].id === sortPlayersGameRecord[i].id) {
         // Set the the found handle as new property (twitter handle) to each players profile
-        playersGameRecord.data[i]["twitterHandle"] =
-          playersProfile.data[i].twitterHandle;
+        sortPlayersGameRecord[i]["twitterHandle"] =
+          sortplayersProfile[i].twitterHandle;
       }
     }
     // Store new record with twitter handle
-    twitterIncludedProfile.push(playersGameRecord);
+    twitterIncludedProfile.push(sortPlayersGameRecord);
 
     // Return players profile(twitter handle and game record)
     res.json(twitterIncludedProfile);
