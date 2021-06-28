@@ -66,7 +66,6 @@ exports.sendEmail = async (receiver, receiverAddress) => {
 
   try {
     let emailTransporter = await createTransporter();
-    //   await emailTransporter.sendMail(mailOptions);
     emailTransporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         console.log(error);
@@ -78,10 +77,3 @@ exports.sendEmail = async (receiver, receiverAddress) => {
     return console.log(error);
   }
 };
-
-// sendEmail({
-//   subject: "Test",
-//   text: "I am sending an email from nodemailer!",
-//   to: "put_email_of_the_recipient",
-//   from: process.env.EMAIL,
-// });

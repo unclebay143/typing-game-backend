@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { createGameRecord } = require("./gameController");
 const { sendWelcomeMail } = require("./../mailing/welcome");
-const { sendEmail } = require("../mailing/welcome-v2");
+// const { sendEmail } = require("../mailing/welcome-v2");
 
 // CONTROLLERS
 
@@ -38,7 +38,7 @@ exports.registration = async (request, response) => {
       const res = await createNewPlayer(userName, email, hashedPassword);
       // Send welcome mail
       sendWelcomeMail(userName, email);
-      sendEmail(userName, email);
+      // sendEmail(userName, email);
       // Return the response status from the db -Restful best practice
       response.status(res.statusCode).json({ message: "success" });
     }
