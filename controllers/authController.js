@@ -9,6 +9,7 @@ const { sendEmail } = require("../mailing/welcome-v2");
 // CONTROLLERS
 
 exports.registration = async (request, response) => {
+  console.log(process.env.AUTHOR_EMAIL_PASSWORD);
   try {
     // Validate for with Joi
     const { error } = registerValidation(request.body);

@@ -15,12 +15,16 @@ const createTransporter = async () => {
   });
 
   const accessToken = await new Promise((resolve, reject) => {
-    oauth2Client.getAccessToken((err, token) => {
-      if (err) {
-        reject("Failed to create access token :(" + error);
-      }
-      resolve(token);
-    });
+    try {
+      oauth2Client.getAccessToken((err, token) => {
+        if (err) {
+          reject("Failed to create access token :(" + err);
+        }
+        resolve(token);
+      });
+    } catch (error) {
+      console.log(error);
+    }
   });
 
   const transporter = nodemailer.createTransport({
