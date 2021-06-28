@@ -1,4 +1,4 @@
-# typing-game-backend
+# Developer Typing Game Backend
 
 Backend for Developers Typing Game Project
 
