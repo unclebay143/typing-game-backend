@@ -44,6 +44,7 @@ exports.sendEmail = async (receiver, receiverAddress) => {
     from: "Developer Typing Game Creator -unclebigbay 👲",
     to: receiverAddress,
     subject: "Welcome on Board AppMode-Testing-V2 👋",
+    // subject: "Welcome on Board 👋",
     html: `Hi ${receiver}, we are glad you joined <strong>10+ developers</strong> using DevType to improve their typing speed. 
         <br />
         <br />
