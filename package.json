@@ -19,7 +19,7 @@
     "express": "^4.17.1",
     "googleapis": "^75.0.0",
     "harperive": "^2.0.1",
-    "joi": "^17.4.0",
+    "joi": "^17.4.1",
     "jsonwebtoken": "^8.5.1",
     "nodemailer": "^6.6.2"
   },
