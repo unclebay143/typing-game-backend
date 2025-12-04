@@ -17,11 +17,11 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "googleapis": "^75.0.0",
+    "googleapis": "^124.0.0",
     "harperive": "^2.0.1",
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
-    "nodemailer": "^6.6.2"
+    "nodemailer": "^7.0.11"
   },
   "engine": {
     "node": "14.16.0"
